@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "439204550478",
+    "project_id": "moviyeee",
+    "storage_bucket": "moviyeee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439204550478:android:bc12574a027a2792ea301f",
+        "android_client_info": {
+          "package_name": "com.ex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPwL8tPChGnJbdlt9mj2oSm6P_GbtR0Ls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439204550478:android:e14f5f8b8d914e21ea301f",
+        "android_client_info": {
+          "package_name": "com.example.moviyee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPwL8tPChGnJbdlt9mj2oSm6P_GbtR0Ls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
