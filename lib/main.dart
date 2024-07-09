@@ -5,6 +5,7 @@ import 'package:moviyee/constants.dart';
 
 import 'package:moviyee/controllers/otpVerificationPage.dart';
 import 'package:moviyee/controllers/firebase_folder/firebase_options.dart';
+import 'package:moviyee/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Colors.black,
           primaryColor: AppConstants.buttoncolor),
-      home: ,
+      home: HomeScreen(),
     );
   }
 }
