@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moviyee/constants.dart';
 import 'package:moviyee/controllers/Auth_services.dart';
 import 'package:moviyee/controllers/otpVerificationPage.dart';
 
@@ -143,13 +144,11 @@ class _LoginScreenState extends State<LoginScreen>
                     );
                   }
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 34, 14, 179),
-                ),
+                style: ButtonStyleConstants.elevatedButtonStyle,
                 child: const Text(
                   "Send OTP",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppConstants.buttontext,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthService {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   static String verifyId = "";
+  static int? resendToken;
 
   //to sent OTP to user
   static Future sentOTP({
@@ -24,8 +25,47 @@ class AuthService {
               return;
             },
             codeSent: (verficationId, forceResendingToken) async {
+              resendToken = forceResendingToken;
               verifyId = verficationId;
               nextStep(verifyId);
+
+              return;
+            },
+            codeAutoRetrievalTimeout: (verificationId) async {
+              return;
+            })
+        .onError(
+      (error, stackTrace) {
+        print(error);
+        errorStep();
+      },
+    );
+  }
+
+//Resend OTP : (the resend token is a must, if we need to resend the otp in 30 sec)
+  static Future resendOTP({
+    required String phone,
+    required Function errorStep,
+    required Function nextStep,
+  }) async {
+    print(phone);
+    await _firebaseAuth
+        .verifyPhoneNumber(
+            forceResendingToken: resendToken,
+            timeout: Duration(seconds: 30),
+            phoneNumber: "+91$phone",
+            verificationCompleted: (PhoneAuthCredential) async {
+              print("resend verification completed");
+              return;
+            },
+            verificationFailed: (error) async {
+              print(error);
+              return;
+            },
+            codeSent: (verficationId, forceResendingToken) async {
+              verifyId = verficationId;
+              nextStep(verifyId);
+              print(verifyId);
 
               return;
             },
