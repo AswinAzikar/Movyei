@@ -4,8 +4,10 @@ class AppConstants {
   static const Color buttoncolor = Color.fromARGB(255, 34, 14, 179);
   static const Color buttontext = Color.fromARGB(255, 255, 255, 255);
   static const Color errorColor = Colors.red;
-   static const Color successColor = Colors.green; 
+  static const Color successColor = Colors.green;
   static const Color textButtonColor = Color.fromARGB(255, 140, 128, 234);
+
+  static const Color snackBarcolor = Color.fromARGB(255, 254, 255, 255);
 }
 
 class ButtonStyleConstants {

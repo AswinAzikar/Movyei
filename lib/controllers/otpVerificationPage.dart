@@ -190,6 +190,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
+                          backgroundColor: AppConstants.snackBarcolor,
                           content: Text(
                             'Error resending OTP',
                             style: TextStyle(color: AppConstants.errorColor),
@@ -205,6 +206,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       print('OTP resent successfully');
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
+                          backgroundColor: AppConstants.snackBarcolor,
                           content: Text(
                             'OTP send successfully.',
                             style: TextStyle(color: AppConstants.successColor),
