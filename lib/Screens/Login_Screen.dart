@@ -70,9 +70,9 @@ class _LoginScreenState extends State<LoginScreen>
                     child: const Text(
                       "Welcome back !",
                       style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: AppConstants.buttoncolor),
                     ),
                   ),
                   const SizedBox(
@@ -83,9 +83,9 @@ class _LoginScreenState extends State<LoginScreen>
                     child: const Text(
                       "Enter your phone number to continue.",
                       style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          color: AppConstants.textButtonColor),
                     ),
                   ),
                   const SizedBox(
@@ -96,10 +96,15 @@ class _LoginScreenState extends State<LoginScreen>
                     child: Form(
                       key: _formKeyPhone,
                       child: TextFormField(
+                        cursorColor: Colors.black,
                         controller: _phoneController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          prefix: const Text("+91 "),
+                          fillColor: AppConstants.buttoncolor,
+                          prefix: const Text(
+                            "+91 ",
+                            style: TextStyle(color: Colors.grey),
+                          ),
                           labelText: "Your phone number here.",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
