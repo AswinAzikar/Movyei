@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moviyee/models/movie_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +12,55 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool _isloading = true;
+  ScrollController scrollController = ScrollController();
+  CarouselController carouselController = CarouselController();
+    List<Result> result = [];
+  int offset = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    handlenext();
+    _fetchdata(offset);
+  }
+
+  void handlenext() {
+    scrollController.addListener(
+      () async {
+        if (scrollController.position.maxScrollExtent ==
+            scrollController.position.pixels) {
+          _fetchdata(offset);
+        }
+      },
+    );
+  }
+
+  Future<void> _fetchdata(paraOffset) async {
+    final dio = Dio();
+    print(offset);
+    try {
+      var response = await dio.get(
+          'https://api.themoviedb.org/3/movie/popular?api_key=b426ac0d6d34af117beb43c263b8d2ed');
+      if (response.statusCode == 200) {
+        print(response.data);
+        print("success");
+
+        ModelClass modelClass = ModelClass.fromJson(response.data);
+        result += modelClass.results;
+        int localOffset = offset + 15;
+
+        setState(() {
+          _isloading = false;
+          offset = localOffset;
+        });
+      }
+    } catch (e) {
+      print("Error   $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenheight = MediaQuery.of(context).size.width;
@@ -47,7 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 width: double.infinity,
                 child: CarouselSlider.builder(
-                    itemCount: 10,
+                   carouselController:carouselController,
+                    itemCount: result.length,
                     options: CarouselOptions(
                       height: containerHeight,
                       autoPlay: true,
@@ -63,8 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: containerHeight,
                           width: containerWidth,
                           color: Colors.yellow,
-                        ),
-                      );
+                     //     child: 
+                      ));
                     }),
               ),
               SizedBox(height: .1 * screenheight),
