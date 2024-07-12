@@ -3,20 +3,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moviyee/Screens/tempscreen.dart';
 import 'package:moviyee/controllers/Api/remote_data_sorce.dart';
-import 'package:moviyee/horizontal_slider_with_title.dart';
+import 'package:moviyee/widgets/horizontal_slider_with_title.dart';
 import 'package:moviyee/models/movie_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   ScrollController scrollController = ScrollController();
   CarouselController carouselController = CarouselController();
   List<Result> trending = [];
@@ -37,15 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => InfinitePage(),
-            ),
-          );
-        },
-      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -56,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         controller: scrollController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: screenWidth * 0.1,
             ),
             trending.isEmpty
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : SizedBox(
                     child: CarouselSlider.builder(
                       carouselController: carouselController,
@@ -76,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         viewportFraction: 0.6,
                         autoPlayCurve: Curves.fastOutSlowIn,
                         enlargeCenterPage: true,
-                        autoPlayAnimationDuration: Duration(seconds: 1),
+                        autoPlayAnimationDuration: const Duration(seconds: 1),
                         onPageChanged: (index, reason) {
                           setState(() {
                             currentPage = index;
@@ -100,17 +89,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: CachedNetworkImage(
                                   imageUrl: imageUrl,
                                   fit: BoxFit.cover,
-                                  placeholder: (context, url) => Center(
+                                  placeholder: (context, url) => const Center(
                                       child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                      const Icon(Icons.error),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              child: Text(
-                                trending[index].title!,
-                                style: TextStyle(fontSize: 16),
+                              child: Center(
+                                child: Text(
+                                  trending[index].title!,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
                               ),
                             ),
                           ],
@@ -119,10 +110,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
             SizedBox(height: .05 * screenHeight),
-            HorizontalSliderWIthTitle(
+            const HorizontalSliderWIthTitle(
+              title: "Now Playing",
+            ),
+            SizedBox(height: .05 * screenHeight),
+            const HorizontalSliderWIthTitle(
               title: "Top Rated Movies",
             ),
-            HorizontalSliderWIthTitle(
+            const HorizontalSliderWIthTitle(
               title: "Upcoming Movies",
             ),
             SizedBox(height: .05 * screenHeight),

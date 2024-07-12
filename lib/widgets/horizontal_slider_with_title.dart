@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import 'controllers/Api/remote_data_sorce.dart';
-import 'models/movie_model.dart';
+import '../controllers/Api/remote_data_sorce.dart';
+import '../models/movie_model.dart';
 
 class HorizontalSliderWIthTitle extends StatefulWidget {
   const HorizontalSliderWIthTitle({
@@ -35,8 +35,11 @@ class _HorizontalSliderWIthTitleState extends State<HorizontalSliderWIthTitle> {
     final String sectionName;
     if (widget.title == 'Upcoming Movies') {
       sectionName = "upcoming";
-    } else {
+    } else if(widget.title == "Top Rated"){
       sectionName = "top_rated";
+    }
+    else{
+      sectionName = "now_playing";
     }
     final items = await RemoteDataSorce.fetchMovies(
         pageKey, sectionName);
