@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moviyee/Screens/tempscreen.dart';
 import 'package:moviyee/controllers/Api/remote_data_sorce.dart';
 import 'package:moviyee/widgets/horizontal_slider_with_title.dart';
 import 'package:moviyee/models/movie_model.dart';
@@ -78,33 +79,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index, realIndex) {
                         final imageUrl =
                             'https://image.tmdb.org/t/p/w300${trending[index].posterPath}';
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(18),
-                                child: CachedNetworkImage(
-                                  imageUrl: imageUrl,
-                                  fit: BoxFit.cover,
-                                  placeholder: (context, url) => const Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                        return GestureDetector(
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (ctx) => InfinitePage())),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(18),
+                                  child: CachedNetworkImage(
+                                    imageUrl: imageUrl,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => const Center(
+                                        child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              child: Center(
-                                child: Text(
-                                  trending[index].title!,
-                                  style: const TextStyle(fontSize: 16),
+                              SizedBox(
+                                child: Center(
+                                  child: Text(
+                                    trending[index].title!,
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         );
                       },
                     ),
