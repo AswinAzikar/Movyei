@@ -35,4 +35,6 @@ static Future<List<Result>> fetchMovies(int num, String sectionName) async {
       throw Exception('Failed to load top rated movies');
     }
   }
+
+
 }

@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moviyee/models/movie_model.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key, required this.result});
+  const DetailScreen({Key? key, required this.result}) : super(key: key);
 
   final Result result;
 
@@ -13,14 +14,14 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         controller: _scrollController,
         child: Column(
           children: [
@@ -69,7 +70,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back,
                         color: Color.fromARGB(255, 204, 204, 204),
                       ),
@@ -77,33 +78,114 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                 ),
                 Positioned(
-                  bottom: 6,
+                  bottom: 4,
                   left: 16,
                   right: 16,
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: Colors.transparent,
+                      //  color: Colors.black.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Text(
-                            widget.result.title!,
-                            style: TextStyle(
-                              fontFamily: GoogleFonts.montserrat().fontFamily,
-                              fontSize: 30,
-                              fontWeight: FontWeight.w500,
-                            ),
+                        Text(
+                          widget.result.title!,
+                          style: TextStyle(
+                            fontFamily: GoogleFonts.montserrat().fontFamily,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
                           ),
-                        )
+                        ),
+                        SizedBox(height: 0.01 * screenHeight),
+                        Text(
+                          'Original Title: ${widget.result.originalTitle}',
+                          style: TextStyle(
+                            fontFamily: GoogleFonts.montserrat().fontFamily,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: 0.04 * screenHeight),
                       ],
                     ),
                   ),
                 ),
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Votings : ",
+                        style: TextStyle(
+                            fontFamily: GoogleFonts.montserrat().fontFamily),
+                      ),
+                      RatingBar.builder(
+                        itemSize: 30,
+                        itemBuilder: (context, index) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (double value) {},
+                        initialRating: widget.result.voteAverage! / 2,
+                        minRating: 0.5,
+                        allowHalfRating: true,
+                        direction: Axis.horizontal,
+                        itemCount: 5,
+                        itemPadding:
+                            const EdgeInsets.symmetric(horizontal: 4.0),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 0.03 * screenHeight),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Popularity : ",
+                        style: TextStyle(
+                            fontFamily: GoogleFonts.montserrat().fontFamily),
+                      ),
+                      RatingBar.builder(
+                        itemSize: 30,
+                        itemBuilder: (context, index) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (double value) {},
+                        initialRating: widget.result.popularity! / 200,
+                        minRating: 0.5,
+                        allowHalfRating: true,
+                        direction: Axis.horizontal,
+                        itemCount: 5,
+                        itemPadding:
+                            const EdgeInsets.symmetric(horizontal: 4.0),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 0.03 * screenHeight),
+                  Text(
+                    "Description : ",
+                    style: TextStyle(
+                        fontFamily: GoogleFonts.montserrat().fontFamily),
+                  ),
+                  SizedBox(height: 0.03 * screenHeight),
+                  Row(
+                    children: [Expanded(child: Text(widget.result.overview!))],
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),

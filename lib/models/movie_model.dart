@@ -3,7 +3,6 @@ import 'dart:convert';
 ModelClass modelClassFromJson(String str) =>
     ModelClass.fromJson(json.decode(str));
 
-String modelClassToJson(ModelClass data) => json.encode(data.toJson());
 
 class ModelClass {
   final int? page;
@@ -29,14 +28,7 @@ class ModelClass {
         totalResults: json["total_results"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "page": page,
-        "results": results == null
-            ? []
-            : List<dynamic>.from(results!.map((x) => x.toJson())),
-        "total_pages": totalPages,
-        "total_results": totalResults,
-      };
+ 
 }
 
 class Result {
@@ -96,26 +88,7 @@ class Result {
         voteCount: json["vote_count"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "backdrop_path": backdropPath,
-        "id": id,
-        "title": title,
-        "original_title": originalTitle,
-        "overview": overview,
-        "poster_path": posterPath,
-        "media_type": mediaTypeValues.reverse[mediaType],
-        "adult": adult,
-        "original_language": originalLanguageValues.reverse[originalLanguage],
-        "genre_ids":
-            genreIds == null ? [] : List<dynamic>.from(genreIds!.map((x) => x)),
-        "popularity": popularity,
-        "release_date": releaseDate == null
-            ? null
-            : "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
-        "video": video,
-        "vote_average": voteAverage,
-        "vote_count": voteCount,
-      };
+
 }
 
 enum MediaType { MOVIE }
