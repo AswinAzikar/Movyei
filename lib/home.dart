@@ -3,7 +3,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:moviyee/Screens/DetailScreen_carousel.dart';
+import 'package:moviyee/Screens/DetailScreen.dart';
+
 import 'package:moviyee/controllers/Api/remote_data_sorce.dart';
 import 'package:moviyee/widgets/horizontal_slider_with_title.dart';
 import 'package:moviyee/models/movie_model.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:moviyee/Screens/DetailScreen.dart';
-import 'package:moviyee/Screens/DetailScreen_carousel.dart';
+
 
 import '../controllers/Api/remote_data_sorce.dart';
 import '../models/movie_model.dart';
