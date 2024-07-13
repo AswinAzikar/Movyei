@@ -136,7 +136,9 @@ class _DetailScreenState extends State<DetailScreen> {
                             fontFamily: GoogleFonts.montserrat().fontFamily),
                       ),
                       RatingBar.builder(
+                        ignoreGestures: true,
                         itemSize: 30,
+                        glow: true,
                         itemBuilder: (context, index) => const Icon(
                           Icons.star,
                           color: Colors.amber,
