@@ -2,8 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:moviyee/models/movie_model.dart';
 
 class RemoteDataSorce {
-  final  dio = Dio(BaseOptions(baseUrl: "https://api.themoviedb.org"));
-
+  final dio = Dio(BaseOptions(baseUrl: "https://api.themoviedb.org"));
 
   Future<ModelClass?> fetchTrending(int paraOffset) async {
     try {
@@ -17,7 +16,8 @@ class RemoteDataSorce {
       print("Error: $e");
     }
   }
-static Future<List<Result>> fetchMovies(int num, String sectionName) async {
+
+  static Future<List<Result>> fetchMovies(int num, String sectionName) async {
     final dio = Dio();
 
     try {
@@ -35,6 +35,4 @@ static Future<List<Result>> fetchMovies(int num, String sectionName) async {
       throw Exception('Failed to load top rated movies');
     }
   }
-
-
 }

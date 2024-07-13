@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moviyee/Screens/chip_labels.dart';
 import 'package:moviyee/models/movie_model.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -100,9 +101,11 @@ class _DetailScreenState extends State<DetailScreen> {
                             color: Colors.white,
                           ),
                         ),
-                        SizedBox(height: 0.01 * screenHeight),
+                        // SizedBox(height: 0.01 * screenHeight),
                         Text(
-                          'Original Title: ${widget.result.originalTitle}',
+                          widget.result.originalTitle != widget.result.title
+                              ? 'Also known as : ${widget.result.originalTitle}'
+                              : " ",
                           style: TextStyle(
                             fontFamily: GoogleFonts.montserrat().fontFamily,
                             fontSize: 14,
@@ -122,6 +125,8 @@ class _DetailScreenState extends State<DetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  GenreChipsWidget(genreIds: widget.result.genreIds ?? []),
+                  SizedBox(height: 0.04 * screenHeight),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
