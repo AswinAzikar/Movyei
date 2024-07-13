@@ -95,12 +95,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'https://image.tmdb.org/t/p/w300${trending[index].posterPath}';
                             return GestureDetector(
                               onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (ctx) => DetailScreen(
-                                    result: trending[index],
-                                  ),
-                                ),
-                              ),
+                                  MaterialPageRoute(
+                                      builder: (ctx) => DetailScreen(
+                                          result: trending[index],),),),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
