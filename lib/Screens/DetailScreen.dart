@@ -171,6 +171,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         onRatingUpdate: (double value) {},
                         initialRating: widget.result.popularity! / 200,
+                        ignoreGestures: true,
                         minRating: 0.5,
                         allowHalfRating: true,
                         direction: Axis.horizontal,
